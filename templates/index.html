@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../static/style.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+    <div class="header">
+        {{ mssg }}
+    </div>
+
+    <div class="taskList">
+        <ul>
+    {% for task in tasks %}
+        <li>
+            <input type="checkbox" id="{{ loop.index }}" name="taskCheckbox" value="{{ loop.index }}">
+            <label for="{{ loop.index }}">{{ task }}</label>
+        </li>
+    {% endfor %}
+    </ul>
+    </div>
+
+    <form method="POST" action="{{ url_for('add_task') }}">
+        <label for="newTask">Add task:</label>
+        <input type="text" id="newTask" name="newTask" required>
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>
